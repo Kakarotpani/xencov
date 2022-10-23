@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xencov/services/auth_service.dart';
+import 'package:xencov/views/doctor_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Container(
           height: size.height,
           padding: const EdgeInsets.all(18),
@@ -59,15 +59,17 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 child: InkWell(
                   onTap: (){},
-                  child: const ListTile(
+                  child: ListTile(
                     minLeadingWidth: 4.0,
-                    leading: Icon(Icons.search, color: Colors.black),
-                    title: Text("Search",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.grey
+                    leading: const Icon(Icons.search, color: Colors.black),
+                    title: Form(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Search",
+                          border: InputBorder.none
+                        ),
                       ),
-                    ),
+                    )
                   ),
                 )
               ),
@@ -183,69 +185,75 @@ class _HomeViewState extends State<HomeView> {
                   color: Color.fromARGB(127, 244, 186, 186),
                   borderRadius: BorderRadius.all(Radius.circular(15))
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(8, 2, 8, 0),
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(205, 239, 151, 107),
-                              borderRadius: BorderRadius.all(Radius.circular(8))
+                child: InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => DoctorView()
+                    ));
+                  } ,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(8, 2, 8, 0),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(205, 239, 151, 107),
+                                borderRadius: BorderRadius.all(Radius.circular(8))
+                              ),
+                              child: Image.asset('assets/images/doctor.png')
                             ),
-                            child: Image.asset('assets/images/doctor.png')
-                          ),
-                          const SizedBox(width: 12),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Dr. Stefeni Albert",
-                                style: TextStyle(
-                                  color: Colors.orange,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400
+                            const SizedBox(width: 12),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text("Dr. Stefeni Albert",
+                                  style: TextStyle(
+                                    color: Colors.orange,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500
+                                  ),
                                 ),
-                              ),
-                              Text("Heart Specialist",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
+                                Text("Heart Specialist",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
-                        onTap: (){},
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: size.height / 26,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(205, 239, 155, 107),
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                          ),
-                          child: const Text("call",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500
+                      Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          onTap: (){},
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: size.height / 26,
+                            decoration: const BoxDecoration(
+                              color: Color.fromARGB(205, 239, 155, 107),
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
+                            child: const Text("call",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ),
-              //const SizedBox(height: 12)
-              ElevatedButton(onPressed: () => Auth().signOut(), child: const Text("sign out"))
+              const SizedBox(height: 12)
             ],
           ),
         ),

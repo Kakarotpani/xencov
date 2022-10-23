@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:xencov/services/auth_service.dart';
-import 'package:xencov/widgets/button_widgets.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -12,7 +11,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-  String? errorMessage = '';
+  String? errorMessage;
   bool isFormValidated = false;
   bool isLoading = false;
   TextEditingController emailController = TextEditingController();
@@ -40,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
-  Future<void> signInWithEmailAndPassword() async {
+/*   Future<void> signInWithEmailAndPassword() async {
     try {
       await Auth().signInWithEmailAndPassword(
         email: emailController.text,
@@ -51,51 +50,36 @@ class _LoginViewState extends State<LoginView> {
         errorMessage = e.message;
       });
     }
+  } */
+    Future<void> signInWithEmailAndPassword() async {
+
+      final res = await Auth().signInWithEmailAndPassword(
+        emailController.text,
+        passwordController.text,
+      );
+    
+      if(res != null){
+        setState(() {
+          errorMessage = res;
+          isLoading = false;
+        });
+      }
   }
 
-  Widget appButton(String label, bool isPrimary,[Function()? onTap, IconData? icon]){
-    return Container(
-      padding: const EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height / 10,
-      width: MediaQuery.of(context).size.width / 2.28,
-      decoration: BoxDecoration(
-        color: isPrimary 
-        ? Colors.orange
-        : Colors.grey,
-        borderRadius: const BorderRadius.all(Radius.circular(20))
+  ButtonStyle appButtonStyle(bool isPrimary, BuildContext context){
+    return ButtonStyle(
+      minimumSize: MaterialStateProperty.all(Size(
+        MediaQuery.of(context).size.width / 2.28,
+        MediaQuery.of(context).size.height / 10,
+      )),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),  
+        )
       ),
-      child: InkWell(
-        onTap: onTap,
-        child: Row(
-          children: [
-            Visibility(
-              visible: (icon == null) ? false : true,   
-              replacement: const SizedBox(),
-              child: Expanded(
-                child: CircleAvatar(
-                  backgroundColor:const Color.fromARGB(150, 241, 237, 237),
-                  child: Icon(icon, color: Colors.white)
-                )
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              flex: (icon == null) ? 1 : 2,
-              child: Wrap(
-                children: [
-                  Text(label,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600
-                    ),
-                  )
-                ],
-              )
-            )
-          ],
-        ),
-      ),
+      backgroundColor: isPrimary
+      ? MaterialStateProperty.all(Colors.orange)
+      : MaterialStateProperty.all(Colors.grey)
     );
   }
 
@@ -105,7 +89,7 @@ class _LoginViewState extends State<LoginView> {
       style: const TextStyle(
         color: Colors.white,
         fontSize: 18,
-        fontWeight: FontWeight.w600
+        fontWeight: FontWeight.w500
       ),
     );
   }
@@ -222,13 +206,16 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ],
                 ),
-              /* Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  appButton("Sign Up", true, createUserWithEmailAndPassword),
-                  appButton("Sign In", false, signInWithEmailAndPassword)
-                ],
-              ) */
+                if(errorMessage != null)
+                  Container(
+                    decoration: const BoxDecoration(
+                      color:Color.fromARGB(255, 247, 155, 149),
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    margin: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.all(8),
+                    child: Text(errorMessage.toString())
+                  )
             ],
           ),
         ),

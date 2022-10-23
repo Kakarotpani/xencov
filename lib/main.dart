@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         stream: Auth().authStateChanges,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomeView();
+            return const HomeView();
           } else {
             return const LoginView();
           }
