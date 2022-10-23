@@ -16,7 +16,7 @@
 
 ### Screens
 
-[Doc1.pdf](https://github.com/Kakarotpani/xencov/files/9847319/Doc1.pdf)
+![screens](https://user-images.githubusercontent.com/59501811/197410770-bd8f98c3-ec49-4c1e-beac-359904592334.png)
 
 ### Run in Windows
     1-  ..\xencov> flutter pub get
