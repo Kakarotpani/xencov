@@ -1,16 +1,23 @@
-# xencov
+# Xencov Consultancy App
+### A Flutter Application
 
-A new Flutter project.
 
-## Getting Started
+![flutter](https://user-images.githubusercontent.com/59501811/195680567-1fdfd454-27bf-4583-aab0-4f8b51bf6fbc.png)
 
-This project is a starting point for a Flutter application.
+### Dependencies
 
-A few resources to get you started if this is your first Flutter project:
+>```Flutter 3.0.5 ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+>```Dart 2.17.6 ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+>```firebase_auth: 4.0.2 ```
+
+>```firebase_core: 2.1.0 ```
+
+### Screens
+
+![screens](https://user-images.githubusercontent.com/59501811/197410770-bd8f98c3-ec49-4c1e-beac-359904592334.png)
+
+### Run in Windows
+    1-  ..\xencov> flutter pub get
+    2-  ..\xencov> flutter run
