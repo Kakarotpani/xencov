@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "603735836120",
+    "project_id": "xencov-ee55b",
+    "storage_bucket": "xencov-ee55b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603735836120:android:03f01e315af5f744bf1ead",
+        "android_client_info": {
+          "package_name": "com.example.xencov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603735836120-063qmhp6ev9q8nam08u2g2fr19ljk65f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjGcdTQ9bK2n6SlkrH00PoQ_sRzTHT9Uw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603735836120-063qmhp6ev9q8nam08u2g2fr19ljk65f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603735836120-8reo7u3cbeg78k8nrpljarffpbcofn80.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.xencov"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
