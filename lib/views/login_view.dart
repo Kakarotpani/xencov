@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:xencov/services/auth_service.dart';
 
@@ -27,43 +26,29 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await Auth().createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
+    final res = await Auth().createUserWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    if(res != null){
       setState(() {
-        errorMessage = e.message;
+        errorMessage = res;
+        isLoading = false;
       });
     }
   }
 
-/*   Future<void> signInWithEmailAndPassword() async {
-    try {
-      await Auth().signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-    } on FirebaseAuthException catch (e) {
+  Future<void> signInWithEmailAndPassword() async {
+    final res = await Auth().signInWithEmailAndPassword(
+      emailController.text,
+      passwordController.text,
+    );  
+    if(res != null){
       setState(() {
-        errorMessage = e.message;
+        errorMessage = res;
+        isLoading = false;
       });
     }
-  } */
-    Future<void> signInWithEmailAndPassword() async {
-
-      final res = await Auth().signInWithEmailAndPassword(
-        emailController.text,
-        passwordController.text,
-      );
-    
-      if(res != null){
-        setState(() {
-          errorMessage = res;
-          isLoading = false;
-        });
-      }
   }
 
   ButtonStyle appButtonStyle(bool isPrimary, BuildContext context){
